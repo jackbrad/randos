@@ -165,8 +165,6 @@ print("Inserting 2000 Customers with accounts, roles, and transactions.... ")
 for count in range_with_status(10):
     cu_id = database.run_in_transaction(insert_customer)
     #add some random roles to the customer_account
-
-
     for acct in created_account_list:
         Role_Count= random.randint(1,3)
         r = 0
