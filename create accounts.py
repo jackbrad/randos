@@ -162,16 +162,18 @@ def insert_transaction(transaction,AccountId):
 count = 0
 os.system('clear')
 print("Inserting 2000 Customers with accounts, roles, and transactions.... ")
-for count in range_with_status(10):
-    cu_id = database.run_in_transaction(insert_customer)
-    #add some random roles to the customer_account
-    for acct in created_account_list:
-        Role_Count= random.randint(1,3)
-        r = 0
-        while r<Role_Count:
-            database.run_in_transaction(insert_role,cu_id,acct)
-            r=r+1
-    
+for count in range_with_status(200):
+    l=0
+    while l < 10:
+        cu_id = database.run_in_transaction(insert_customer)
+        #add some random roles to the customer_account
+        for acct in created_account_list:
+            Role_Count= random.randint(1,3)
+            r = 0
+            while r<Role_Count:
+                database.run_in_transaction(insert_role,cu_id,acct)
+                r=r+1
+        l=l+1    
     count = count + 1
 
 print("Finished. Customers: {} Roles: {} Accounts: {} Transacations: {}".format(customers, roles, accounts, transactions))
